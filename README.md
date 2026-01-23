@@ -1,13 +1,8 @@
 # Jamie's Hyprland Config
 
-A modern Hyprland desktop configuration for EndeavourOS with a sleek, thin menubar.
-
-## Bar Layout
-
-```
-[Menu] | [Terminal] | [Active Windows]     [ 1  2  3  4 ]     [Tray] | [🛜 🔊 🔋 🕐] | [⏻]
-└─────────── Left ───────────┘           └── Center ──┘      └────────── Right ──────────┘
-```
+A hacked together Hyprland desktop configuration for EndeavourOS with a sleek, thin menubar and not a
+lot else. No idea what I was doing as I was learning as I went. If that sounds like something you would
+like to install on your machine, go for it!
 
 ## Installation
 
@@ -19,7 +14,18 @@ sudo pacman -S hyprland waybar wofi ttf-jetbrains-mono-nerd grim slurp wl-clipbo
 paru -S ghostty
 ```
 
-### 2. Deploy Configuration
+### 2. Run Installation Script
+
+The easiest way to set up everything is using the provided installation script. This will install dependencies (Arch/AUR), backup existing configs, and deploy the new files.
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
+### 3. Manual Installation (Optional)
+
+If you prefer to move files manually:
 
 ```bash
 # Clone or copy this repo
@@ -38,7 +44,7 @@ cp scripts/power-menu.sh ~/.config/hypr/scripts/
 chmod +x ~/.config/hypr/scripts/power-menu.sh
 ```
 
-### 3. Start Hyprland
+### 4. Start Hyprland
 
 Log out and select Hyprland from your display manager, or run:
 ```bash
