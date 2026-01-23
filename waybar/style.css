@@ -1,0 +1,242 @@
+/* Waybar Styling for Hyprland */
+/* ~/.config/waybar/style.css */
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.85);
+    border-radius: 10px;
+    border: 1px solid rgba(137, 180, 250, 0.3);
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* ============================================================================
+   TOOLTIP
+   ============================================================================ */
+
+tooltip {
+    background: rgba(30, 30, 46, 0.95);
+    border: 1px solid rgba(137, 180, 250, 0.5);
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: #cdd6f4;
+    padding: 4px 8px;
+}
+
+/* ============================================================================
+   LEFT MODULES
+   ============================================================================ */
+
+#custom-menu {
+    color: #89b4fa;
+    padding: 0 12px;
+    font-size: 16px;
+}
+
+#custom-menu:hover {
+    background: rgba(137, 180, 250, 0.2);
+    border-radius: 6px;
+}
+
+#custom-launch-term {
+    color: #a6e3a1;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+#custom-launch-term:hover {
+    background: rgba(166, 227, 161, 0.2);
+    border-radius: 6px;
+}
+
+#custom-launch-files {
+    color: #89b4fa;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+#custom-launch-files:hover {
+    background: rgba(137, 180, 250, 0.2);
+    border-radius: 6px;
+}
+
+#custom-launch-firefox {
+    color: #fab387;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+#custom-launch-firefox:hover {
+    background: rgba(250, 179, 135, 0.2);
+    border-radius: 6px;
+}
+
+#custom-separator {
+    color: rgba(108, 112, 134, 0.5);
+    padding: 0 4px;
+}
+
+#taskbar {
+    padding: 0 4px;
+}
+
+#taskbar button {
+    padding: 0 6px;
+    margin: 2px;
+    background: transparent;
+    color: #cdd6f4;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#taskbar button:hover {
+    background: rgba(137, 180, 250, 0.2);
+}
+
+#taskbar button.active {
+    background: rgba(137, 180, 250, 0.3);
+    border-bottom: 2px solid #89b4fa;
+}
+
+/* ============================================================================
+   CENTER MODULES - WORKSPACES
+   ============================================================================ */
+
+#workspaces {
+    background: rgba(49, 50, 68, 0.6);
+    border-radius: 8px;
+    padding: 0 4px;
+}
+
+#workspaces button {
+    color: #6c7086;
+    padding: 0 10px;
+    margin: 3px 2px;
+    background: transparent;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(137, 180, 250, 0.15);
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    background: rgba(137, 180, 250, 0.3);
+    color: #89b4fa;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background: rgba(243, 139, 168, 0.3);
+    color: #f38ba8;
+}
+
+/* ============================================================================
+   RIGHT MODULES - SYSTEM STATUS
+   ============================================================================ */
+
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#network,
+#pulseaudio,
+#battery,
+#clock {
+    color: #cdd6f4;
+    padding: 0 10px;
+    transition: all 0.2s ease;
+}
+
+#network:hover,
+#pulseaudio:hover,
+#battery:hover,
+#clock:hover {
+    background: rgba(203, 166, 247, 0.15);
+    border-radius: 6px;
+}
+
+/* Network states */
+#network.disconnected {
+    color: #a6adc8;
+}
+
+#network.wifi {
+    color: #89b4fa;
+}
+
+#network.ethernet {
+    color: #a6e3a1;
+}
+
+/* Audio states */
+#pulseaudio.muted {
+    color: #6c7086;
+}
+
+/* Battery states */
+#battery.charging,
+#battery.plugged {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    color: #fab387;
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    to {
+        color: #1e1e2e;
+        background: #f38ba8;
+        border-radius: 6px;
+    }
+}
+
+/* Clock */
+#clock {
+    color: #f5c2e7;
+}
+
+/* ============================================================================
+   POWER BUTTON
+   ============================================================================ */
+
+#custom-power {
+    color: #f38ba8;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+#custom-power:hover {
+    background: rgba(243, 139, 168, 0.2);
+    border-radius: 6px;
+}

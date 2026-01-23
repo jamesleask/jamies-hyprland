@@ -1,0 +1,151 @@
+{
+    // Waybar Configuration for Hyprland
+    // ~/.config/waybar/config.jsonc
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "spacing": 4,
+    "margin-top": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+    // Module placement
+    "modules-left": [
+        "custom/menu",
+        "custom/separator",
+        "custom/launch-term",
+        "custom/separator",
+        "custom/launch-files",
+        "custom/separator",
+        "custom/launch-firefox",
+        "custom/separator",
+        "wlr/taskbar"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "tray",
+        "custom/separator",
+        "network",
+        "pulseaudio",
+        "battery",
+        "clock",
+        "custom/separator",
+        "custom/power"
+    ],
+    // ========================================================================
+    // LEFT MODULES
+    // ========================================================================
+    "custom/menu": {
+        "format": "",
+        "tooltip": "Application Menu",
+        "on-click": "wofi --show drun"
+    },
+    "custom/launch-term": {
+        "format": "",
+        "tooltip": "Launch Terminal",
+        "on-click": "ghostty"
+    },
+    "custom/launch-files": {
+        "format": "󰉋",
+        "tooltip": "Launch File Manager",
+        "on-click": "nautilus"
+    },
+    "custom/launch-firefox": {
+        "format": "󰈹",
+        "tooltip": "Launch Firefox",
+        "on-click": "firefox"
+    },
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 16,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [],
+        "rewrite": {}
+    },
+    // ========================================================================
+    // CENTER MODULES
+    // ========================================================================
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "persistent-workspaces": {
+            "*": 4
+        },
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    // ========================================================================
+    // RIGHT MODULES
+    // ========================================================================
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+    "network": {
+        "format-wifi": "󰤨 ",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰤭 ",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "on-click": "nm-connection-editor"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 ",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "on-click": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
+        "tooltip-format": "{timeTo}"
+    },
+    "clock": {
+        "format": "󰥔 {:%H:%M}",
+        "format-alt": "󰃭 {:%a %d %b}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "left",
+            "format": {
+                "today": "<span color='#89b4fa'><b>{}</b></span>"
+            }
+        }
+    },
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": "Power Menu",
+        "on-click": "~/.config/hypr/scripts/power-menu.sh"
+    }
+}
