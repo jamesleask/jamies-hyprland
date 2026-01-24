@@ -10,7 +10,7 @@ like to install on your machine, go for it!
 #### Arch Linux
 
 ```bash
-sudo pacman -S hyprland waybar wofi ttf-jetbrains-mono-nerd grim slurp wl-clipboard swaylock
+sudo pacman -S hyprland waybar rofi-wayland ttf-jetbrains-mono-nerd grim slurp wl-clipboard swaylock
 paru -S ghostty
 ```
 
@@ -56,7 +56,7 @@ Hyprland
 | Key | Action |
 |-----|--------|
 | `Super + Enter` | Launch ghostty |
-| `Super + D` | App launcher (wofi) |
+| `Super + D` | App launcher (rofi) |
 | `Super + Q` | Close window |
 | `Super + 1-4` | Switch workspace |
 | `Super + Shift + 1-4` | Move window to workspace |
@@ -68,6 +68,16 @@ Hyprland
 ## Customization
 
 - **Terminal**: Change `$terminal = ghostty` in `hyprland.conf`
-- **Launcher**: Change `$menu = wofi --show drun` in `hyprland.conf`
-- **Colors**: Edit `waybar/style.css` (uses Catppuccin Mocha palette)
+- **Launcher**: Rofi is configured in `rofi/config.rasi` and `rofi/theme.rasi`
+- **Colors**: Edit `waybar/style.css` and `rofi/theme.rasi` (uses Catppuccin Mocha palette)
 - **More quick launchers**: Add modules in `waybar/config.jsonc` under `modules-left`
+
+## Further Polish Recommendations
+
+To take this setup to the next level, consider installing these popular Wayland tools:
+
+1.  **Notifications**: [SwayNC](https://github.com/ErikReider/SwayNotificationCenter) - A full notification center with a control panel (WiFi, Bluetooth, DND).
+2.  **Logout Menu**: [wlogout](https://github.com/Artsy0/wlogout) - A beautiful fullscreen logout menu that replaces basic scripts.
+3.  **Lock Screen**: [hyprlock](https://github.com/hyprwm/hyprlock) - The official Hyprland lock screen, allowing for complex layouts and animations.
+4.  **Idle Daemon**: [hypridle](https://github.com/hyprwm/hypridle) - Manages screen dimming and auto-locking with `hyprlock`.
+5.  **Clipboard Manager**: [copyq](https://github.com/hluk/CopyQ) or [cliphist](https://github.com/sentriz/cliphist) (already used) with a rofi frontend.

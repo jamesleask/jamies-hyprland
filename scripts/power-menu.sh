@@ -4,14 +4,14 @@
 
 OPTIONS="󰌾 Lock\n󰍃 Logout\n󰜉 Restart\n󰐥 Shutdown"
 
-SELECTED=$(echo -e "$OPTIONS" | wofi --dmenu --prompt "Power" --width 200 --height 180 --cache-file /dev/null)
+SELECTED=$(echo -e "$OPTIONS" | rofi -dmenu -p "Power" -theme-str 'window {width: 250px; height: 210px;} listview {lines: 4; columns: 1;}')
 
 case "$SELECTED" in
     "󰌾 Lock")
         swaylock
         ;;
     "󰍃 Logout")
-        hyprctl dispatch exit
+        loginctl terminate-user ""
         ;;
     "󰜉 Restart")
         systemctl reboot

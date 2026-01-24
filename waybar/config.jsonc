@@ -39,7 +39,7 @@
     "custom/menu": {
         "format": "",
         "tooltip": "Application Menu",
-        "on-click": "wofi --show drun"
+        "on-click": "rofi -show drun"
     },
     "custom/launch-term": {
         "format": "",

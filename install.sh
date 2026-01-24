@@ -43,7 +43,7 @@ print_step "Installing base dependencies..."
 sudo pacman -S --needed --noconfirm \
     hyprland \
     waybar \
-    wofi \
+    rofi-wayland \
     ttf-jetbrains-mono-nerd \
     grim \
     slurp \
@@ -72,6 +72,7 @@ print_step "Deploying configuration files..."
 mkdir -p "$HYPR_DIR"
 mkdir -p "$WAYBAR_DIR"
 mkdir -p "$HYPR_DIR/scripts"
+mkdir -p "$CONFIG_DIR/rofi"
 
 # Hyprland
 backup_if_exists "$HYPR_DIR/hyprland.conf"
@@ -82,6 +83,12 @@ backup_if_exists "$WAYBAR_DIR/config"
 backup_if_exists "$WAYBAR_DIR/style.css"
 cp "$REPO_DIR/waybar/config.jsonc" "$WAYBAR_DIR/config"
 cp "$REPO_DIR/waybar/style.css" "$WAYBAR_DIR/"
+
+# Rofi
+backup_if_exists "$CONFIG_DIR/rofi/config.rasi"
+backup_if_exists "$CONFIG_DIR/rofi/theme.rasi"
+cp "$REPO_DIR/rofi/config.rasi" "$CONFIG_DIR/rofi/"
+cp "$REPO_DIR/rofi/theme.rasi" "$CONFIG_DIR/rofi/"
 
 # Scripts
 cp "$REPO_DIR/scripts/power-menu.sh" "$HYPR_DIR/scripts/"
