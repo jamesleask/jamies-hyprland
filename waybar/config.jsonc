@@ -146,6 +146,6 @@
     "custom/power": {
         "format": "⏻ ",
         "tooltip": "Power Menu",
-        "on-click": "~/.config/hypr/scripts/power-menu.sh"
+        "on-click": "wlogout -l /home/james/code/github/jamies-hyprland/wlogout/layout -s /home/james/code/github/jamies-hyprland/wlogout/style.css"
     }
 }
