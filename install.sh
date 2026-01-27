@@ -73,12 +73,12 @@ print_step "Deploying configuration files..."
 mkdir -p "$CONFIG_DIR"
 
 # Iterate over directories in REPO_DIR
-# Exclude .git and scripts
+# Exclude .git
 for dir in "$REPO_DIR"/*/; do
     dir_name=$(basename "$dir")
     
-    # Skip .git and scripts (scripts are handled separately)
-    if [[ "$dir_name" == ".git" || "$dir_name" == "scripts" ]]; then
+    # Skip .git
+    if [[ "$dir_name" == ".git" ]]; then
         continue
     fi
     
@@ -94,13 +94,6 @@ for dir in "$REPO_DIR"/*/; do
     fi
 done
 
-# Handle scripts separately
-if [ -d "$REPO_DIR/scripts" ]; then
-    print_step "Deploying scripts..."
-    mkdir -p "$HYPR_DIR/scripts"
-    cp -r "$REPO_DIR/scripts/"* "$HYPR_DIR/scripts/"
-    chmod +x "$HYPR_DIR/scripts/"*.sh
-fi
 
 print_success "Configurations deployed."
 
