@@ -29,19 +29,16 @@ If you prefer to move files manually:
 
 ```bash
 # Clone or copy this repo
-mkdir -p ~/.config/hypr ~/.config/waybar
+mkdir -p ~/.config
 
-# Hyprland config
-cp hyprland.conf ~/.config/hypr/
+# Copy all config folders
+cp -r hypr waybar rofi wlogout ~/.config/
 
-# Waybar config
-cp waybar/config.jsonc ~/.config/waybar/config
-cp waybar/style.css ~/.config/waybar/
+# Fix waybar config name
+mv ~/.config/waybar/config.jsonc ~/.config/waybar/config
 
-# Helper scripts
-mkdir -p ~/.config/hypr/scripts
-cp scripts/power-menu.sh ~/.config/hypr/scripts/
-chmod +x ~/.config/hypr/scripts/power-menu.sh
+# Ensure scripts are executable
+chmod +x ~/.config/hypr/scripts/*.sh
 ```
 
 ### 4. Start Hyprland
@@ -67,8 +64,8 @@ Hyprland
 
 ## Customization
 
-- **Terminal**: Change `$terminal = ghostty` in `hyprland.conf`
-- **Launcher**: Rofi is configured in `rofi/config.rasi` and `rofi/theme.rasi`
+- **Terminal**: Change `$terminal = ghostty` in `hypr/hyprland.conf`
+- **Launcher**: Rofi is configured in `rofi/`
 - **Colors**: Edit `waybar/style.css` and `rofi/theme.rasi` (uses Catppuccin Mocha palette)
 - **More quick launchers**: Add modules in `waybar/config.jsonc` under `modules-left`
 

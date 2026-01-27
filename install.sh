@@ -44,6 +44,7 @@ sudo pacman -S --needed --noconfirm \
     hyprland \
     waybar \
     rofi-wayland \
+    wlogout \
     ttf-jetbrains-mono-nerd \
     grim \
     slurp \
@@ -68,31 +69,38 @@ fi
 # --- Deploy Configuration ---
 print_step "Deploying configuration files..."
 
-# Create target directories
-mkdir -p "$HYPR_DIR"
-mkdir -p "$WAYBAR_DIR"
-mkdir -p "$HYPR_DIR/scripts"
-mkdir -p "$CONFIG_DIR/rofi"
+# Create target config directory
+mkdir -p "$CONFIG_DIR"
 
-# Hyprland
-backup_if_exists "$HYPR_DIR/hyprland.conf"
-cp "$REPO_DIR/hyprland.conf" "$HYPR_DIR/"
+# Iterate over directories in REPO_DIR
+# Exclude .git and scripts
+for dir in "$REPO_DIR"/*/; do
+    dir_name=$(basename "$dir")
+    
+    # Skip .git and scripts (scripts are handled separately)
+    if [[ "$dir_name" == ".git" || "$dir_name" == "scripts" ]]; then
+        continue
+    fi
+    
+    target_dir="$CONFIG_DIR/$dir_name"
+    
+    print_step "Deploying $dir_name to $target_dir..."
+    backup_if_exists "$target_dir"
+    cp -r "$dir" "$CONFIG_DIR/"
+    
+    # Rename config.jsonc to config for waybar if it exists in the target
+    if [[ "$dir_name" == "waybar" && -f "$target_dir/config.jsonc" ]]; then
+        mv "$target_dir/config.jsonc" "$target_dir/config"
+    fi
+done
 
-# Waybar
-backup_if_exists "$WAYBAR_DIR/config"
-backup_if_exists "$WAYBAR_DIR/style.css"
-cp "$REPO_DIR/waybar/config.jsonc" "$WAYBAR_DIR/config"
-cp "$REPO_DIR/waybar/style.css" "$WAYBAR_DIR/"
-
-# Rofi
-backup_if_exists "$CONFIG_DIR/rofi/config.rasi"
-backup_if_exists "$CONFIG_DIR/rofi/theme.rasi"
-cp "$REPO_DIR/rofi/config.rasi" "$CONFIG_DIR/rofi/"
-cp "$REPO_DIR/rofi/theme.rasi" "$CONFIG_DIR/rofi/"
-
-# Scripts
-cp "$REPO_DIR/scripts/power-menu.sh" "$HYPR_DIR/scripts/"
-chmod +x "$HYPR_DIR/scripts/power-menu.sh"
+# Handle scripts separately
+if [ -d "$REPO_DIR/scripts" ]; then
+    print_step "Deploying scripts..."
+    mkdir -p "$HYPR_DIR/scripts"
+    cp -r "$REPO_DIR/scripts/"* "$HYPR_DIR/scripts/"
+    chmod +x "$HYPR_DIR/scripts/"*.sh
+fi
 
 print_success "Configurations deployed."
 
