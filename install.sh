@@ -44,7 +44,6 @@ sudo pacman -S --needed --noconfirm \
     hyprland \
     waybar \
     rofi-wayland \
-    wlogout \
     ttf-jetbrains-mono-nerd \
     grim \
     slurp \
@@ -63,7 +62,7 @@ else
 fi
 
 if [ -n "$AUR_HELPER" ]; then
-    $AUR_HELPER -S --needed --noconfirm ghostty
+    $AUR_HELPER -S --needed --noconfirm ghostty wlogout
 fi
 
 # --- Deploy Configuration ---
