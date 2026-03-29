@@ -48,7 +48,8 @@ sudo pacman -S --needed --noconfirm \
     grim \
     slurp \
     wl-clipboard \
-    swaylock
+    swaylock \
+    swaybg
 
 # --- Install AUR Dependencies ---
 print_step "Installing AUR dependencies (ghostty)..."

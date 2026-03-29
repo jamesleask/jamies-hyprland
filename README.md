@@ -22,7 +22,7 @@ chmod +x install.sh
 ##### Arch Linux
 
 ```bash
-sudo pacman -S hyprland waybar rofi-wayland ttf-jetbrains-mono-nerd grim slurp wl-clipboard swaylock
+sudo pacman -S hyprland waybar rofi-wayland ttf-jetbrains-mono-nerd grim slurp wl-clipboard swaylock swaybg
 paru -S ghostty
 ```
 
