@@ -22,8 +22,8 @@ chmod +x install.sh
 ##### Arch Linux
 
 ```bash
-sudo pacman -S hyprland waybar rofi-wayland ttf-jetbrains-mono-nerd grim slurp wl-clipboard swaylock swaybg
-paru -S ghostty
+sudo pacman -S hyprland lua rofi-wayland ttf-jetbrains-mono-nerd grim slurp wl-clipboard swaylock swaybg
+paru -S ghostty waybar-git wlogout
 ```
 
 ##### Manual
@@ -62,8 +62,8 @@ Hyprland
 
 ## Customization
 
-- **Keyboard mappings**: Edit `hypr/hyprland.conf` see `kb_layout=`
-- **Terminal**: Change `$terminal = ghostty` in `hypr/hyprland.conf`
+- **Keyboard mappings**: Edit `hypr/hyprland.lua` under `input.kb_layout`
+- **Terminal**: Change `local terminal = "ghostty"` in `hypr/hyprland.lua`
 - **Launcher**: Rofi is configured in `rofi/`
 - **Colors**: Edit `waybar/style.css` and `rofi/theme.rasi` (uses Catppuccin Mocha palette)
 - **More quick launchers**: Add modules in `waybar/config.jsonc` under `modules-left`

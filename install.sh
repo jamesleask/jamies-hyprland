@@ -42,7 +42,7 @@ fi
 print_step "Installing base dependencies..."
 sudo pacman -S --needed --noconfirm \
     hyprland \
-    waybar \
+    lua \
     rofi-wayland \
     ttf-jetbrains-mono-nerd \
     grim \
@@ -52,18 +52,18 @@ sudo pacman -S --needed --noconfirm \
     swaybg
 
 # --- Install AUR Dependencies ---
-print_step "Installing AUR dependencies (ghostty)..."
+print_step "Installing AUR dependencies (ghostty, waybar-git, wlogout)..."
 if command -v paru &> /dev/null; then
     AUR_HELPER="paru"
 elif command -v yay &> /dev/null; then
     AUR_HELPER="yay"
 else
-    echo "No AUR helper (paru/yay) found. Please install ghostty manually."
+    echo "No AUR helper (paru/yay) found. Please install ghostty, waybar-git, and wlogout manually."
     AUR_HELPER=""
 fi
 
 if [ -n "$AUR_HELPER" ]; then
-    $AUR_HELPER -S --needed --noconfirm ghostty wlogout
+    $AUR_HELPER -S --needed --noconfirm ghostty waybar-git wlogout
 fi
 
 # --- Deploy Configuration ---
@@ -88,6 +88,11 @@ for dir in "$REPO_DIR"/*/; do
     backup_if_exists "$target_dir"
     cp -r "$dir" "$CONFIG_DIR/"
     
+    # Clean up legacy hyprland.conf if migrating to Lua
+    if [[ "$dir_name" == "hypr" && -f "$target_dir/hyprland.lua" && -f "$target_dir/hyprland.conf" ]]; then
+        rm -f "$target_dir/hyprland.conf"
+    fi
+
     # Rename config.jsonc to config for waybar if it exists in the target
     if [[ "$dir_name" == "waybar" && -f "$target_dir/config.jsonc" ]]; then
         mv "$target_dir/config.jsonc" "$target_dir/config"
